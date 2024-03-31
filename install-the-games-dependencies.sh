@@ -12,7 +12,8 @@ sudo apt-get install -y git
 
 # Install node and build-essentials in order to be
 # able to install the game
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+#curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
 sudo apt-get install -y nodejs
 sudo apt-get install -y build-essential
 
