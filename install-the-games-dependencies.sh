@@ -21,7 +21,9 @@ sudo apt-get install -y build-essential
 sudo apt-get install -y nginx
 
 # Install postgresql-9.6
-sudo sh -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main' > /etc/apt/sources.list.d/postgresql.list"
+#sudo sh -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main' > /etc/apt/sources.list.d/postgresql.list"
+sudo sh -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ bookworm-pgdg main' > /etc/apt/sources.list.d/postgresql.list"
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo apt-get update
-sudo apt-get install -y postgresql-9.6
+#sudo apt-get install -y postgresql-9.6
+sudo apt-get install -y postgresql
