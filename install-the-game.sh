@@ -14,7 +14,7 @@ sudo chown secrethitler:secrethitler /var/www/secret-hitler
 # Get the game sources
 sudo su secrethitler
 cd ~
-git clone https://github.com/danrough/secret-hitler.git .
+git clone https://github.com/romaruss/secret-hitler.git .
 exit
 
 # Globally install the necessary node modules
