@@ -8,6 +8,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.3",
+    "mime-type": "^4.0.0",
+    "mime-types": "^2.1.35",
+    "pg": "^8.11.4",
     "seedrandom": "^2.4.2",
     "sendgrid": "^2.0.0",
     "socket.io": "^1.4.4"

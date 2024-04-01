@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secret Hitler</title>
-    <link rel="icon" type="image/png" href="image/hitler.png"/>
-    <link rel="apple-touch-icon" href="image/hitler.png"/>
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/lobby/welcome.css" rel="stylesheet">
-    <link href="css/lobby/lobby.css" rel="stylesheet">
-    <link href="css/game/game.css" rel="stylesheet">
-    <link href="css/game/chat.css" rel="stylesheet">
-    <link href="css/game/overlay.css" rel="stylesheet">
-    <link href="css/game/players.css" rel="stylesheet">
-    <link href="css/game/board.css" rel="stylesheet">
-    <link href="css/game/cards.css" rel="stylesheet">
+<base href="/public/">	
+<title>Secret Hitler</title>
+	<meta charset="utf-8"/>
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 
+	<link rel="icon" type="image/png" href="image/hitler.png"/>
+	<link rel="apple-touch-icon" href="image/hitler.png"/>
+
+	<link href="css/main.css" rel="stylesheet" type="text/css"/>
+	<link href="css/lobby/welcome.css" rel="stylesheet" type="text/css"/>
+	<link href="css/lobby/lobby.css" rel="stylesheet" type="text/css"/>
+	<link href="css/game/game.css" rel="stylesheet" type="text/css"/>
+	<link href="css/game/chat.css" rel="stylesheet" type="text/css"/>
+	<link href="css/game/overlay.css" rel="stylesheet" type="text/css"/>
+	<link href="css/game/players.css" rel="stylesheet" type="text/css"/>
+	<link href="css/game/board.css" rel="stylesheet" type="text/css"/>
+	<link href="css/game/cards.css" rel="stylesheet" type="text/css"/>
 </head>
+
 <body>
-prova
-<img class="wordmark" src="image/wordmark.png" alt="Secret Hitler">
-    <section id="s-welcome" style="display:none;">
+
+<section id="s-welcome" style="display:none;">
 	<div id="welcome-splash">
 		<div class="section">
 			<h1>Can you find and stop the...</h1>
@@ -242,23 +245,27 @@ prova
 	</div>
 </section>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
-<!--    <script src="https://simplewebrtc.com/latest-v3.js"></script>-->
-    <script src="public/js/util/config.js"></script>
-    <script src="public/js/util/util.js"></script>
-    <script src="public/js/util/socket.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/lobby/welcome.js"></script>
-    <script src="js/lobby/lobby.js"></script>
-    <script src="js/game/start.js"></script>
-    <script src="js/game/game.js"></script>
-    <script src="js/game/action.js"></script>
-    <script src="js/game/overlay.js"></script>
-    <script src="js/game/cards.js"></script>
-    <script src="js/game/policies.js"></script>
-    <script src="js/game/players.js"></script>
-    <script src="js/game/chat.js"></script>
-		
+<script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="//cdn.socket.io/socket.io-1.4.3.js"></script>
+<script src="//simplewebrtc.com/latest-v2.js"></script>
+
+<script src="js/util/config.js"></script>
+<script src="js/util/util.js"></script>
+<script src="js/util/socket.js"></script>
+
+<script src="js/main.js"></script>
+
+<script src="js/lobby/welcome.js"></script>
+<script src="js/lobby/lobby.js"></script>
+
+<script src="js/game/start.js"></script>
+<script src="js/game/game.js"></script>
+<script src="js/game/action.js"></script>
+<script src="js/game/overlay.js"></script>
+<script src="js/game/cards.js"></script>
+<script src="js/game/policies.js"></script>
+<script src="js/game/players.js"></script>
+<script src="js/game/chat.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posizione Assoluta del File HTML sul Server</title>
+</head>
+<body>
+    <h1>Posizione Assoluta del File HTML sul Server</h1>
+    <p>La posizione assoluta del file è:</p>
+    <p id="absolutePath"></p>
+
+    <script>
+        // Ottieni il percorso assoluto del file HTML attuale
+        var absolutePath = window.location.href;
+
+        // Stampa il percorso assoluto
+        document.getElementById('absolutePath').textContent = absolutePath;
+    </script>
+</body>
+</html>

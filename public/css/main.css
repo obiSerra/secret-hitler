@@ -1,91 +1,85 @@
-/* Beige	#F7E2C0 */
-/* Gold		#FFD556 */
-/* GreyD	#383633 */
-/* Liberal	#78CAD7 #2E6C87 */
-/* Fascist	#E3644F #9C0701 */
-
-html {
-	width: 100%;
-	height: 100%;
+/* Colori */
+:root {
+    --beige: #F7E2C0;
+    --gold: #FFD556;
+    --greyD: #383633;
+    --liberal-light: #78CAD7;
+    --liberal-dark: #2E6C87;
+    --fascist-light: #E3644F;
+    --fascist-dark: #9C0701;
 }
 
-body {
-	margin: 0;
-	width: inherit;
-	height: inherit;
-	background-color: #eaeae5;
-	font-family: system-font, -webkit-system-font, 'Helvetica Neue', Helvetica, sans-serif;
-
-	font-weight: 300;
-	color: #393734;
+/* Generali */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    color: #393734;
+    background-color: #eaeae5;
 }
 
+/* Link */
 a {
-	color: #9C0701;
-	text-decoration: none;
+    color: var(--fascist-dark);
+    text-decoration: none;
 }
 a:hover {
-	color: #E3644F;
-	text-decoration: underline;
+    color: var(--fascist-light);
+    text-decoration: underline;
 }
 
-.clear {
-	clear: both;
-	margin-left: 1px;
+/* Utility */
+.clear::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .left, .left > * {
-	float: left;
-	text-align: left;
+    float: left;
+    text-align: left;
 }
 
 .right, .right > * {
-	float: right;
-	text-align: right;
+    float: right;
+    text-align: right;
 }
 
+/* Heading */
 h1 {
-	font-size: 3em;
+    font-size: 3em;
 }
 
+/* Sections */
 section {
-	width: inherit;
-	height: inherit;
-	overflow: hidden;
+    width: inherit;
+    height: inherit;
+    overflow: hidden;
 }
 
+/* Testo in ombra */
 .faint {
-	color: #666;
+    color: #666;
 }
 
-/* FORMS */
-
+/* Pulsante */
 button.large {
-	height: 44px;
-	width: 480px;
-	max-width: 100%;
-	margin: 8px 0;
-
-	font-size: 1.3em;
-	color: #393734;
+    height: 44px;
+    width: 100%;
+    max-width: 480px;
+    margin: 8px auto;
+    font-size: 1.3em;
+    color: #393734;
 }
 
-input {
-	font-family: inherit;
-}
-
-textarea {
-	box-sizing: border-box;
-	display: block;
-
-	width: 420px;
-	height: 128px;
-	max-width: 100%;
-
-	margin: 12px auto;
-	font-size: 1em;
-}
-
-select {
-	font-size: 1em;
+/* Input */
+input, textarea, select {
+    font-family: inherit;
+    width: 100%;
+    max-width: 420px;
+    margin: 12px auto;
+    font-size: 1em;
 }

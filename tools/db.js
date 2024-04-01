@@ -1,3 +1,12 @@
+const { Client } = require('pg');
+
+const client = new Client({
+    user: 'secrethitler',
+    host: 'localhost',
+    database: 'secrethitler',
+    password: '1q2w3e4r',
+    port: 5432, // Porta predefinita di PostgreSQL
+});
 var Postgres = require('pg');
 
 var Config = require('./config');
@@ -15,8 +24,57 @@ if (!dbConfigured) {
 
 // HELPERS
 
+
+const query = function(statement, params, callback) {
+    client.connect()
+        .then(() => {
+            client.query(statement, params, (err, result) => {
+                if (err) {
+                    console.error('Errore durante l\'esecuzione della query:', err);
+                    if (callback) {
+                        callback(null);
+                    }
+                } else {
+                    if (callback) {
+                        callback(result.rows);
+                    }
+                }
+            });
+        })
+        .catch(err => {
+            console.error('Errore durante la connessione al database:', err);
+        });
+};
+
+module.exports = query;
+/*
 var query = function(statement, params, callback) {
-	Postgres.connect(connectURL, function(err, client, done) {
+	//Postgres.connect(connectURL, function(err, client, done) {
+		client.connect()
+			.then(() => {
+				client.query(statement, params, function(err, result) {
+					done();
+					if (result) {
+						if (callback) {
+							callback(result.rows);
+						}
+					} else if (dbConfigured) {
+						console.error('QUERY ERROR');
+						console.log(statement, params);
+						console.log(err);
+					}
+				});
+				
+			})
+			.catch(err => {
+				if (dbConfigured) {
+				console.error('CLIENT CONNECTION ERROR');
+				console.log(err, client, done);
+			}
+			done();
+			return;
+			});
+/*			
 		if (!client) {
 			if (dbConfigured) {
 				console.error('CLIENT CONNECTION ERROR');
@@ -38,8 +96,9 @@ var query = function(statement, params, callback) {
 			}
 		});
 	});
-};
 
+};
+*/
 var queryOne = function(statement, params, callback) {
 	query(statement, params, function(result) {
 		if (callback) {
