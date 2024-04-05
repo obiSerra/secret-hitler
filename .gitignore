@@ -8,3 +8,5 @@
 # Vagrant stuff
 /.vagrant
 node_modules
+postgres-data
+.env

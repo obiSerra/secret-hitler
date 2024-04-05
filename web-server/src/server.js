@@ -11,7 +11,6 @@ var portNumber = process.env.PORT || 36001;
 
 app.use(express.static('public'));
 //app.use('/public', express.static(path.join(__dirname)))
-console.log('pippo');
 require('./connect/io')(http);
 
 http.listen(portNumber);

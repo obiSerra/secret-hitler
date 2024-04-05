@@ -1,49 +1,44 @@
 const { Client } = require('pg');
-
-const client = new Client({
-    user: 'secrethitler',
-    host: 'localhost',
-    database: 'secrethitler',
-    password: '1q2w3e4r',
-    port: 5432, // Porta predefinita di PostgreSQL
-});
+var config = require('./config');
 var Postgres = require('pg');
-
-var Config = require('./config');
 var Utils = require('./utils');
 
 // SETUP
 
 Postgres.defaults.parseInt8 = true;
 
-var connectURL = process.env.DATABASE_URL || Config.LOCAL_DB_URL;
+const connectURL = config.DB_URL;
 var dbConfigured = connectURL != '';
 if (!dbConfigured) {
 	console.log('Database not configured');
 }
 
+const client = new Client({
+	connectionString: connectURL,
+});
+
 // HELPERS
 
 
-const query = function(statement, params, callback) {
-    client.connect()
-        .then(() => {
-            client.query(statement, params, (err, result) => {
-                if (err) {
-                    console.error('Errore durante l\'esecuzione della query:', err);
-                    if (callback) {
-                        callback(null);
-                    }
-                } else {
-                    if (callback) {
-                        callback(result.rows);
-                    }
-                }
-            });
-        })
-        .catch(err => {
-            console.error('Errore durante la connessione al database:', err);
-        });
+const query = function (statement, params, callback) {
+	client.connect()
+		.then(() => {
+			client.query(statement, params, (err, result) => {
+				if (err) {
+					console.error(`Errore durante l 'esecuzione della query ${statement}:`, err);
+					if (callback) {
+						callback(null);
+					}
+				} else {
+					if (callback) {
+						callback(result.rows);
+					}
+				}
+			});
+		})
+		.catch(err => {
+			console.error('Errore durante la connessione al database:', err);
+		});
 };
 
 module.exports = query;
@@ -99,27 +94,27 @@ var query = function(statement, params, callback) {
 
 };
 */
-var queryOne = function(statement, params, callback) {
-	query(statement, params, function(result) {
+var queryOne = function (statement, params, callback) {
+	query(statement, params, function (result) {
 		if (callback) {
 			callback(result[0]);
 		}
 	});
 };
 
-var fetch = function(columns, table, where, params, callback) {
+var fetch = function (columns, table, where, params, callback) {
 	queryOne('SELECT ' + columns + ' FROM ' + table + ' WHERE ' + where + ' LIMIT 1', params, callback);
 };
 
-var property = function(column, table, where, params, callback) {
-	fetch(column, table, where, params, function(result) {
+var property = function (column, table, where, params, callback) {
+	fetch(column, table, where, params, function (result) {
 		callback(result[column]);
 	});
 };
 
 // UPSERT
 
-var update = function(table, where, columnsValues, returning, callback) {
+var update = function (table, where, columnsValues, returning, callback) {
 	columnsValues.updated_at = Utils.now();
 
 	var columns = [], values = [], placeholders = [];
@@ -134,7 +129,7 @@ var update = function(table, where, columnsValues, returning, callback) {
 	queryOne(queryString, values, callback);
 };
 
-var insert = function(table, columnsValues, returning, callback) {
+var insert = function (table, columnsValues, returning, callback) {
 	var now = Utils.now();
 	if (!columnsValues.created_at) {
 		columnsValues.created_at = now;
@@ -170,8 +165,8 @@ module.exports = {
 
 	insert: insert,
 
-	upsert: function(table, updateWhere, updateColsVals, returning, insertColsVals, callback) {
-		update(table, updateWhere, updateColsVals, returning, function(updated) {
+	upsert: function (table, updateWhere, updateColsVals, returning, insertColsVals, callback) {
+		update(table, updateWhere, updateColsVals, returning, function (updated) {
 			if (updated) {
 				callback(updated);
 			} else {
@@ -180,15 +175,15 @@ module.exports = {
 		});
 	},
 
-	count: function(table, callback) {
-		query('SELECT COUNT(*) FROM ' + table, null, function(result) {
+	count: function (table, callback) {
+		query('SELECT COUNT(*) FROM ' + table, null, function (result) {
 			callback(result[0].count);
 		});
 	},
 
-	updatePlayers: function(userIds, state) {
+	updatePlayers: function (userIds, state) {
 		console.log(state, userIds);
-		query('UPDATE users SET games_'+state+' = games_'+state+' + 1 WHERE id IN ('+userIds.join(',')+')');
+		query('UPDATE users SET games_' + state + ' = games_' + state + ' + 1 WHERE id IN (' + userIds.join(',') + ')');
 	},
 
 };

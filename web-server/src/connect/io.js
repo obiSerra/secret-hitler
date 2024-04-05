@@ -1,4 +1,4 @@
-var SocketIO = require('socket.io');
+var Server = require('socket.io');
 
 var DB = require.main.require('./tools/db');
 
@@ -7,20 +7,22 @@ var Play = require.main.require('./play/play');
 
 //PUBLIC
 
-module.exports = function(http) {
+module.exports = function (http) {
 
-	DB.update('users', 'online_count > 0', {online_count: 0});
+	DB.update('users', 'online_count > 0', { online_count: 0 });
 
-	io = SocketIO(http);
+	const io = new Server(8004);
 
-	io.on('connection', function(socket) {
+	io.on('connection', function (socket) {
+
 		var query = socket.handshake.query;
+		
 		Signin(socket, parseInt(query.uid), query.auth);
 		Play(socket);
 
-		socket.on('disconnect', function() {
+		socket.on('disconnect', function () {
 			if (socket.uid) {
-				DB.query('UPDATE users SET online_count = online_count - 1 WHERE id = '+socket.uid+' AND online_count > 0', null);
+				DB.query('UPDATE users SET online_count = online_count - 1 WHERE id = ' + socket.uid + ' AND online_count > 0', null);
 			}
 
 			var player = socket.player;
